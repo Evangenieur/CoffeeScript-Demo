@@ -1,0 +1,19 @@
+extends layout
+
+block title
+  title #{project.name} &gt; #{page.name}
+
+
+block head
+  h1 #{page.name} 
+  p CoffeeScript online editor
+  h2 CoffeeScript
+  #coffee-editor
+
+block content
+  .span6
+    h3 Javascript
+    pre#compiled-js(class="prettyprint linenums")
+  .span6
+    h3 Output
+    pre#console-log(class="prettyprint linenums")

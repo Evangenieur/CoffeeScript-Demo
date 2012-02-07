@@ -1,0 +1,29 @@
+!!! 5
+
+html
+
+  head
+    block title
+    include inc/styles
+    include inc/scripts
+
+  body
+    div(class="navbar navbar-fixed-top")
+      .navbar-inner
+        .container
+          a(class="btn btn-navbar",data-toggle="collapse",data-target=".nav-collapse")
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a(href="#").brand= project.name
+          include inc/menu
+    .container 
+      .hero-unit
+        block head
+      .row
+        block content
+      hr
+      footer
+        p &copy; #{company.name} #{(new Date).getFullYear()}
+            
+    
