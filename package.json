@@ -1,0 +1,24 @@
+{
+  "name": "express-bootstrap",
+  "version": "0.0.3",
+  "description": "Express, Jade and Stylus project bootstrap.",
+  "keywords": ["express", "jade", "stylus", "bootstrap"],
+  "author": "Bradley Griffiths <bradley.griffiths@gmail.com>",
+  "dependencies": {
+    "express": "2.5.6",
+    "jade": "0.20.0",
+    "stylus": "0.22.6",
+    "colors": "0.6.0",
+    "coffee-script": "1.2.0"
+  },
+  "scripts": {
+    "start":  "coffee server.coffee"
+  }
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/bradleyg/express-bootstrap.git"
+  },
+  "engines": {
+    "node": ">= 0.6.0"
+  }
+}
