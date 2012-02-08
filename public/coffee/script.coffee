@@ -8,15 +8,15 @@ editor =
     _ '"Please modify this code to create errors"'
     _ "Begining Test"
     _ tablo = (i for i in [0..10] when not (i % 2) ) # Get pair numbers
-    _ "#{tablo[2..4]} | #{tablo[4..]}"
-    obj = 
+    _ "#{tablo[2..4]} | #{tablo[4..]}" # Array slice
+    obj = # Object Definition
       me: 
         firstname: "evan"
         lastname: "genieur"
-        nickname: -> "#{@firstname}#{@lastname}"
-    _ obj.me.nickname?()
-    _ obj.me.nickname.toString()
-    console.log obj
+        nickname: -> "#{@firstname}#{@lastname}" # Function
+    _ obj.me.nickname?() # Execute function if property exist
+    _ obj.me.nickname.toString() # Function source code
+    console.log obj # Inspect Object on navigator console
     '''
     @refresh_js()
     
@@ -50,6 +50,7 @@ editor =
       console.log "get_js_code", e
     
   refresh_js: ->
+    $("#compiled-js").text("")
     if text = @get_js_code()
       $("#compiled-js").text(text)
       @run()
