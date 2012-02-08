@@ -2,27 +2,27 @@ editor =
   init: ->
     @config_editor()
     @default_script()
-    @bind_events()
-
-  clear:->
-    $('.tabs li > a[href="#coffee"]').trigger 'click'
-    @coffeeEditor.getSession().setValue ""
-    $('#console-log').html("")
   
   default_script: ->
     @coffeeEditor.getSession().setValue '''
-    tablo = (i for i in [0..10])
+    _ '"Please modify this code to create errors"'
+    _ "Begining Test"
+    _ tablo = (i for i in [0..10] when not (i % 2) ) # Get pair numbers
+    _ "#{tablo[2..4]} | #{tablo[4..]}"
     obj = 
-      moi: 
+      me: 
         firstname: "evan"
         lastname: "genieur"
         nickname: -> "#{@firstname}#{@lastname}"
-    _ "Begining Test"
+    _ obj.me.nickname?()
+    _ obj.me.nickname.toString()
+    console.log obj
     '''
     @refresh_js()
     
   run: ->
-    $('#console-log').html("")
+    $("#console-log").html ""
+    $("#runtime-alert").html ""
     try
       eval @get_js_code on, '''
         _ = (outs...) -> 
@@ -30,13 +30,24 @@ editor =
             $('#console-log').append("<br/>")
         '''
     catch e
-      console.log e
+      $("#runtime-alert").html """
+      <div class="alert alert-error">
+        <strong>#{e.constructor.name} : </strong> #{e.message}
+      </div>
+      """
+      console.log "run", e
     
   get_js_code: (alert = off, pre_code = "") ->
+    $("#compile-alert").html ""
     try
       CoffeeScript.compile pre_code + "\n" + @coffeeEditor.getSession().getValue()
     catch e
-      console.log e
+      $("#compile-alert").html """
+      <div class="alert alert-error">
+        <strong>#{e.constructor.name} : </strong> #{e.message}
+      </div>
+      """
+      console.log "get_js_code", e
     
   refresh_js: ->
     if text = @get_js_code()
@@ -54,14 +65,6 @@ editor =
     @coffeeEditor.getSession().setUseSoftTabs true
     @coffeeEditor.getSession().setUseWrapMode true
     
-  bind_events: ->
-    $("#run").click (event) =>
-      @run()
-      off
-    $("#clear").click =>
-      @clear()
-      off
-
     @coffeeEditor.getSession().on 'change', =>
       @refresh_js()
 

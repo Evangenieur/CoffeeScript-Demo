@@ -7,7 +7,9 @@ routes = (app, config) ->
       company: config.company
       project: config.project
       page:
-        name: "Editor"
+        name: "CoffeeXP"
+      tweet:
+        msg: encodeURIComponent("CoffeeXP : live #coffeescript coding experiments http://evangenieur.no.de cc @evangenieur")
 
 
 module.exports = routes

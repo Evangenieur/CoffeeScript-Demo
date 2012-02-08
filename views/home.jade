@@ -6,14 +6,22 @@ block title
 
 block head
   h1 #{page.name} 
-  p CoffeeScript online editor
-  h2 CoffeeScript
+  p Live CoffeeScript coding experiments
+  h2 CoffeeScript code
+  div(class="alert alert-success")
+    p
+      strong Use function : _  
+      i (underscore) 
+      |  to display in output
+
   #coffee-editor
 
 block content
   .span6
-    h3 Javascript
+    h3 Compiled Javascript
+    #compile-alert
     pre#compiled-js(class="prettyprint linenums")
   .span6
     h3 Output
+    #runtime-alert
     pre#console-log(class="prettyprint linenums")

@@ -1,9 +1,9 @@
 config = 
   company:
-    name: "Multinetia"
+    name: "Copyleft <a href='http://twitter.com/evangenieur'>@evangenieur</a>"
 
   project:
-    name: "CoffeeScript Demo"
+    name: "CoffeeXP"
 
   express: 
     port: 4000  
