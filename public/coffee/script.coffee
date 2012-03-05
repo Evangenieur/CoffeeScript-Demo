@@ -1,10 +1,16 @@
 editor =
   init: ->
     @config_editor()
-    @default_script()
+    @coffeeEditor.getSession().setValue \
+      if window.location.hash
+        decodeURIComponent \
+          window.location.hash.substr(1)
+      else
+        @default_script()
+    @refresh_js()
   
   default_script: ->
-    @coffeeEditor.getSession().setValue '''
+    '''
     _ '"Please modify this code to create errors"'
     _ "Begining Test"
     _ tablo = (i for i in [0..10] when not (i % 2) ) # Get pair numbers
@@ -18,7 +24,6 @@ editor =
     _ obj.me.nickname.toString() # Function source code
     console.log obj # Inspect Object on navigator console
     '''
-    @refresh_js()
     
   run: ->
     $("#console-log").html ""
@@ -56,6 +61,9 @@ editor =
       @run()
       prettyPrint()
     
+  change_uri_hash: ->
+    window.location.hash = encodeURIComponent( @coffeeEditor.getSession().getValue() )
+
   config_editor: ->
     @coffeeEditor = ace.edit 'coffee-editor'
     @coffeeEditor.setTheme "ace/theme/twilight"
@@ -67,6 +75,7 @@ editor =
     @coffeeEditor.getSession().setUseWrapMode true
     
     @coffeeEditor.getSession().on 'change', =>
+      @change_uri_hash()
       @refresh_js()
 
 $ ->
