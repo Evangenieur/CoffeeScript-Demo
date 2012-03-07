@@ -61,8 +61,9 @@ editor =
       @run()
       prettyPrint()
     
-  change_uri_hash: ->
-    window.location.hash = encodeURIComponent( @coffeeEditor.getSession().getValue() )
+  change_uri_hash: _.throttle ->
+        window.location.hash = encodeURIComponent( @coffeeEditor.getSession().getValue() )
+      , 1000
 
   config_editor: ->
     @coffeeEditor = ace.edit 'coffee-editor'
